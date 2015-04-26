@@ -1,0 +1,106 @@
+@perspective-default: 100px;
+
+.scale(@z-value; @perspective) {
+  @scale: unit((@perspective - @z-value) / @perspective);
+}
+
+.parallax-variant(@perspective: @perspective-default) {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-perspective: @perspective;
+  perspective: @perspective;
+  -webkit-perspective-origin-x: 100%;
+  perspective-origin-x: 100%;
+}
+
+.parallax {
+  .parallax-variant();
+}
+
+.parallax-group {
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.parallax-group-variant(@z-value) {
+  z-index: @z-value;
+}
+.parallax-group-1 {
+  .parallax-group-variant(100);
+}
+.parallax-group-2 {
+  .parallax-group-variant(200);
+}
+.parallax-group-3 {
+  .parallax-group-variant(300);
+}
+.parallax-group-4 {
+  .parallax-group-variant(400);
+}
+.parallax-group-5 {
+  .parallax-group-variant(500);
+}
+
+.parallax-layer-variant(@z-value; @z-index; @perspective: @perspective-default) {
+  .scale(@z-value, @perspective);
+  -webkit-transform: translateZ(@z-value) scale(@scale);
+  transform: translateZ(@z-value) scale(@scale);
+  z-index: @z-index;
+}
+
+.parallax-layer {
+  position: relative;
+  -webkit-transform-origin-x: 100%;
+  transform-origin-x: 100%;
+}
+
+.parallax-abs-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transform-origin-x: 100%;
+  transform-origin-x: 100%;
+}
+
+.parallax-layer_3 {
+  .parallax-layer-variant(87px, 4);
+}
+.parallax-layer_2 {
+  .parallax-layer-variant(75px, 3);
+}
+.parallax-layer_1 {
+  .parallax-layer-variant(50px, 2);
+}
+.parallax-layer_1 {
+  .parallax-layer-variant(25px, 1);
+}
+.parallax-layer_0 {
+  .parallax-layer-variant(0, 0);
+}
+.parallax-layer_-1 {
+  .parallax-layer-variant(-25px, -1);
+}
+.parallax-layer_-2 {
+  .parallax-layer-variant(-50px, -2);
+}
+.parallax-layer_-3 {
+  .parallax-layer-variant(-100px, -3);
+}
+.parallax-layer_-4 {
+  .parallax-layer-variant(-200px, -4);
+}
+.parallax-layer_-5 {
+  .parallax-layer-variant(-400px, -5);
+}
+
+.debug-on .parallax-group {
+  -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
+  transform: translate3d(800px, 0, -400px) rotateY(25deg);
+}
+.debug-on .parallax-layer {
+  box-shadow: 0 0 0 2px #000;
+  opacity: 0.9;
+}
