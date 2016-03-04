@@ -1,17 +1,13 @@
 Package.describe({
-  name: 'jcheroske:parallax',
+  name: 'jcheroske:less-parallax',
   version: '0.0.1',
-  // Brief, one-line summary of the package.
   summary: 'Pure CSS Parallax Scrolling',
-  // URL to the Git repository containing the source code for this package.
-  git: 'git@bitbucket.org:jcheroske/parallax.git',
-  // By default, Meteor will default to using README.md for documentation.
-  // To avoid submitting documentation, set this field to null.
+  git: 'https://github.com/jcheroske/meteor-less-parallax.git',
   documentation: 'README.md'
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.2');
-  api.addFiles('parallax.less', 'client');
+  api.versionsFrom('1.2.1');
+  api.addAssets('parallax.less', ['client']);
 });
 
